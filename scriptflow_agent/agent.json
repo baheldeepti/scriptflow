@@ -1,0 +1,32 @@
+{
+  "name": "ScriptFlow",
+  "description": "ScriptFlow is a clinically-aware pharmacy prior authorization orchestrator. Given a rejected pharmacy claim, it classifies the issue, scores patient-safety urgency (Tier 1 Critical / Tier 2 High / Tier 3 Standard), extracts FHIR clinical evidence, drafts a pre-filled PA form or appeal letter, and produces a complete 5T deliverable: Talk (pharmacist briefing), Table (case snapshot), Template (PA form), Transaction (simulated submission), and Task (follow-up work item). Built for the Agents Assemble hackathon, May 2026.",
+  "url": "https://scriptflow-agent.ngrok.app/a2a/scriptflow_agent",
+  "version": "1.0.0",
+  "protocolVersion": "0.3.0",
+  "preferredTransport": "JSONRPC",
+  "supportedInterfaces": [
+    {
+      "transport": "JSONRPC",
+      "url": "https://scriptflow-agent.ngrok.app/a2a/scriptflow_agent"
+    }
+  ],
+  "defaultInputModes": ["text/plain"],
+  "defaultOutputModes": ["text/plain"],
+  "capabilities": {
+    "streaming": false
+  },
+  "skills": [
+    {
+      "id": "resolve_prior_authorization",
+      "name": "Resolve Prior Authorization Case",
+      "description": "Takes a pharmacy rejection or denial and produces a complete PA workflow plan: classification, urgency triage, evidence gathering, pre-filled PA form, simulated submission, and follow-up task.",
+      "tags": ["healthcare", "pharmacy", "prior authorization", "FHIR", "MCP", "A2A"],
+      "examples": [
+        "Patient was prescribed Ozempic. Aetna rejected it for step therapy. Patient has T2DM and ASCVD. Please resolve.",
+        "PA for adalimumab was denied for moderate plaque psoriasis. Patient failed methotrexate. Draft an appeal.",
+        "Apixaban claim rejected as not covered. Patient is on chronic anticoagulation for AFib. What now?"
+      ]
+    }
+  ]
+}

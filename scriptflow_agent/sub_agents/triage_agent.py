@@ -1,14 +1,14 @@
 """Triage sub-agent: classifies rejections and scores clinical urgency."""
 
 from google.adk.agents import LlmAgent
-from google.adk.tools.mcp_tool import MCPToolset, StreamableHTTPServerParams
+from google.adk.tools.mcp_tool import MCPToolset, StreamableHTTPConnectionParams
 
 from scriptflow_agent.prompts import TRIAGE_AGENT_PROMPT
 from scriptflow_agent.config import PA_ANALYZER_MCP_URL, MODEL_NAME
 
 
 pa_analyzer_toolset = MCPToolset(
-    connection_params=StreamableHTTPServerParams(url=PA_ANALYZER_MCP_URL),
+    connection_params=StreamableHTTPConnectionParams(url=PA_ANALYZER_MCP_URL),
 )
 
 triage_agent = LlmAgent(

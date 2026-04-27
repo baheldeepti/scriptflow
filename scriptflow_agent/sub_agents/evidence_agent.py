@@ -1,7 +1,7 @@
 """Evidence sub-agent: pulls FHIR clinical evidence to support a PA."""
 
 from google.adk.agents import LlmAgent
-from google.adk.tools.mcp_tool import MCPToolset, StreamableHTTPServerParams
+from google.adk.tools.mcp_tool import MCPToolset, StreamableHTTPConnectionParams
 
 from scriptflow_agent.prompts import EVIDENCE_AGENT_PROMPT
 from scriptflow_agent.config import (
@@ -17,7 +17,7 @@ from scriptflow_agent.config import (
 # auto-injects SHARP context headers. For local testing without the platform,
 # we pass them manually via the MCPToolset headers below.
 pa_analyzer_toolset = MCPToolset(
-    connection_params=StreamableHTTPServerParams(
+    connection_params=StreamableHTTPConnectionParams(
         url=PA_ANALYZER_MCP_URL,
         headers={
             "X-FHIR-Server-URL": DEFAULT_FHIR_BASE_URL,

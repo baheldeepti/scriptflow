@@ -67,8 +67,18 @@ async def mcp_endpoint(request: Request):
             "serverInfo": {"name": "scriptflow-pa-analyzer", "version": "1.0.0"},
             "capabilities": {
                 "tools": {},
-                # SHARP-on-MCP: advertise that FHIR context is required for some tools.
-                "experimental": {"fhir_context_required": {"value": True}},
+                # Prompt Opinion FHIR context extension declaration
+                # https://docs.promptopinion.ai/fhir-context/mcp-fhir-context
+                "extensions": {
+                    "ai.promptopinion/fhir-context": {
+                        "scopes": [
+                            {"name": "patient/Patient.rs", "required": True},
+                            {"name": "patient/Condition.rs"},
+                            {"name": "patient/MedicationRequest.rs"},
+                            {"name": "patient/Observation.rs"},
+                        ]
+                    }
+                },
             },
         })
 
